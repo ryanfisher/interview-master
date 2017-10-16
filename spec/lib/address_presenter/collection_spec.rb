@@ -10,7 +10,7 @@ RSpec.describe AddressPresenter::Collection do
 
   describe '#white_house' do
     it 'returns an Address' do
-      expect(collection.white_house).to be_instance_of Address
+      expect(described_class.white_house).to be_instance_of Address
     end
   end
 end

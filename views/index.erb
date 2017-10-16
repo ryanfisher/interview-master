@@ -6,6 +6,7 @@
           <th>Latitude</th>
           <th>Longitude</th>
           <th>Address</th>
+          <th>Distance from White House</th>
         </tr>
       </thead>
       <tbody>
@@ -14,6 +15,7 @@
             <td><%= address.lat %></td>
             <td><%= address.lng %></td>
             <td><%= address.full_address %></td>
+            <td><%= address.distance_from_white_house %></td>
           </tr>
         <% end %>
       </tbody>

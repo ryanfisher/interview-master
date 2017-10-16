@@ -10,24 +10,26 @@ class AddressPresenter
       [35.109937, -89.959983]
     ]
 
-    WHITE_HOUSE_ADDRESS =
-      "1600 Pennsylvania Avenue NW Washington, D.C. 20500"
+    class << self
+      WHITE_HOUSE_ADDRESS =
+        "1600 Pennsylvania Avenue NW Washington, D.C. 20500"
+
+      def white_house
+        @_white_house ||= begin
+          address = Address.new
+          address.full_address = WHITE_HOUSE_ADDRESS
+
+          address
+        end
+      end
+    end
 
     def initialize
       @collection = COORDS.map do |coords|
         address = Address.new
         address.coords = coords
         AddressPresenter.new(address)
-      end
-    end
-
-    def white_house
-      @_white_house ||= begin
-        address = Address.new
-        address.full_address = WHITE_HOUSE_ADDRESS
-
-        address
-      end
+      end.sort_by(&:distance_from_white_house)
     end
 
     def each
