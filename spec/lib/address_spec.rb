@@ -56,14 +56,17 @@ RSpec.describe Address do
 
   describe 'distance finding' do
     let(:detroit) { FactoryGirl.build :address, :as_detroit }
-    let(:kansas_city) { FactoryGirl.build :address, :as_kansas_city }
 
-    xit 'calculates distance with the Geocoder API' do
-      expect(Geocoder::Calculations).to receive(:distance_between).with detroit.coordinates, kansas_city.coordinates
+    it 'calculates distance with the Geocoder API' do
+      expect(Geocoder::Calculations).to receive(:distance_between)
+        .with [address.lat, address.lng], [detroit.lat, detroit.lng]
+      address.distance_between(detroit)
     end
 
-    xit 'returns the distance between two addresses' do
-      expect(detroit.miles_to(kansas_city)).to be > 0
+    it 'returns the distance between two addresses' do
+      address.lat = lat
+      address.lng = lng
+      expect(address.distance_between(detroit)).to be > 0
     end
   end
 end

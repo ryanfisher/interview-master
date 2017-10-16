@@ -15,6 +15,13 @@ class Address
     @full_address
   end
 
+  def distance_between(address)
+    Geocoder::Calculations.distance_between(
+      [@lat, @lng],
+      [address.lat, address.lng]
+    )
+  end
+
   private
 
   def geocode
