@@ -5,13 +5,25 @@ class Address
 
   def coords=(coords)
     @lat, @lng = coords
-    reverse_geocode_if_possible
+    reverse_geocode
+  end
+
+  def full_address=(full_address)
+    @full_address = full_address
+    geocode
+
+    @full_address
   end
 
   private
 
-  def reverse_geocode_if_possible
-    return unless @lat && @lng
+  def geocode
+    data = Geocoder.search(@full_address)[0].data
+    @lat = data.fetch('latt')
+    @lng = data.fetch('longt')
+  end
+
+  def reverse_geocode
     address = Geocoder.search([@lat, @lng])[0].data['usa']
     @full_address = [
       address['usstnumber'],

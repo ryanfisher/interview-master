@@ -5,16 +5,22 @@ RSpec.describe Address do
 
   subject(:address) { described_class.new }
 
-  xdescribe 'geocoding' do
+  describe 'geocoding' do
     let(:payload) {{  'longt' => lng, 'latt' => lat }}
     let(:result) { [ double(data: payload) ] }
 
-    it 'geocodes with Geocoder API' do
+    before do
       expect(Geocoder).to receive(:search).with(full_address).and_return result
     end
 
-    it 'is geocoded' do
-      expect(address).to be_geocoded
+    it 'geocodes with Geocoder API' do
+      address.full_address = full_address
+    end
+
+    it 'sets the coordinates' do
+      address.full_address = full_address
+      expect(address.lat).to be lat
+      expect(address.lng).to be lng
     end
   end
 
