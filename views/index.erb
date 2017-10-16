@@ -1,24 +1,26 @@
 <div class="container-fluid">
   <div class="row">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Latitude</th>
-          <th>Longitude</th>
-          <th>Address</th>
-          <th>Distance from White House</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% addresses.each do |address| %>
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= address.lat %></td>
-            <td><%= address.lng %></td>
-            <td><%= address.full_address %></td>
-            <td><%= address.distance_from_white_house %></td>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Address</th>
+            <th>Distance from White House</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% addresses.each do |address| %>
+            <tr>
+              <td><%= address.lat %></td>
+              <td><%= address.lng %></td>
+              <td><%= address.full_address %></td>
+              <td><%= address.distance_from_white_house %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
