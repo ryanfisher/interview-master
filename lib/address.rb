@@ -6,6 +6,8 @@ class Address
   def coords=(coords)
     @lat, @lng = coords
     reverse_geocode
+
+    coords
   end
 
   def full_address=(full_address)
@@ -32,6 +34,7 @@ class Address
 
   def reverse_geocode
     address = Geocoder.search([@lat, @lng])[0].data['usa']
+    return unless address
     @full_address = [
       address['usstnumber'],
       address['usstaddress'],
