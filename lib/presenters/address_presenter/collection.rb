@@ -1,3 +1,5 @@
+require_relative "../address_presenter"
+
 class AddressPresenter
   class Collection
     include Enumerable
